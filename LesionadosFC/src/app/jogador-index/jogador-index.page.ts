@@ -1,0 +1,42 @@
+import { Component, NgModule } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { jogadoreservice } from '../services/jogador.service';
+import { IJogador } from 'src/models/jogador.model';
+
+@Component({
+  selector: 'app-jogador-index',
+  templateUrl: './jogador-index.page.html',
+  styleUrls: ['./jogador-index.page.scss'],
+})
+
+export class JogadorIndexPage {
+  public jogadores: IJogador[] = [];
+  public hoje: number = Date.now();
+
+  constructor(
+    private modalCtrl: ModalController,
+    private jogadorServ: jogadoreservice
+  ) {}
+
+  ngOnInit(): void {
+    this.listarJogadores();
+  }
+
+  public listarJogadores() {
+    this.jogadores = this.jogadorServ.getAll();
+    console.log(this.jogadores);
+  }
+
+  public deletar(id: string) {
+    this.jogadorServ.delete(id);
+    this.listarJogadores();
+  }
+
+  public corPrioridade(prioridade: string) {
+    return prioridade === 'alto'
+      ? 'danger'
+      : prioridade === 'baixo'
+      ? 'success'
+      : 'warning';
+  }
+}

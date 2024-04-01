@@ -1,0 +1,13 @@
+<ion-grid>
+  <ion-row>
+    <ion-col>Nome</ion-col>
+    <ion-col>Estrelas</ion-col>
+    <ion-col>Presente</ion-col>
+  </ion-row>
+  
+  <ion-row *ngFor="let jogador of dados">
+    <ion-col>{{ jogador.nome }}</ion-col>
+    <ion-col>{{ jogador.estrelas }}</ion-col>
+    <ion-col>{{ jogador.presente }}</ion-col>
+  </ion-row>
+</ion-grid>

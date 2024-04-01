@@ -1,0 +1,7 @@
+{
+  "name": "LesionadosFC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
