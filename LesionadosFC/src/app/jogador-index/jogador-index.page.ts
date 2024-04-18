@@ -1,7 +1,8 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { jogadoreservice } from '../services/jogador.service';
 import { IJogador } from 'src/models/jogador.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-jogador-index',
@@ -15,7 +16,8 @@ export class JogadorIndexPage {
 
   constructor(
     private modalCtrl: ModalController,
-    private jogadorServ: jogadoreservice
+    private jogadorServ: jogadoreservice,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,4 +41,6 @@ export class JogadorIndexPage {
       ? 'success'
       : 'warning';
   }
+
+  
 }

@@ -10,8 +10,17 @@
       </ion-card-header>
     
       <ion-card-content>
-        <app-tabela [dados]="jogadores"></app-tabela>
+        <app-tabela [dados]="jogadores" [routerLink]="''"></app-tabela>
       </ion-card-content>
     </ion-card>
+
+    <ion-button color="secondary" [routerLink]="''">Gerar Times</ion-button>
+  <ion-button shape="round" color="secondary" [routerLink]="'/novo-jogador'">
+    <ion-icon slot="icon-only" name="add"></ion-icon>
+  </ion-button>
+
   </ion-content>
+
+  
+
 </body>

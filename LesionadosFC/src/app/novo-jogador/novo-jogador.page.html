@@ -1,13 +1,27 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>novo-jogador</ion-title>
-  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">novo-jogador</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Adicionar Jogador</ion-card-title>
+    </ion-card-header>
+    
+    <ion-item>
+      <ion-input label="Nome" placeholder=""></ion-input>
+    </ion-item>
+    
+    <p style="color: white;">ESTRELAS</p>
+    ADICIONAR AS ESTRELAS
+
+  </ion-card>
+
+
+
+  <ion-button shape="round" color="secondary" [routerLink]="'/jogador-index'">
+    <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+  </ion-button>
+  <ion-button color="secondary">Adicionar</ion-button>
+
 </ion-content>
