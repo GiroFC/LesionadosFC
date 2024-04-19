@@ -29,6 +29,22 @@ const routes: Routes = [
         (m) => m.EditJogadorPageModule
       ),
   },
+  {
+    path: 'times',
+    loadChildren: () =>
+      import('./times/times.module').then(
+        (m) => m.TimesPageModule
+      ),
+  },
+  {
+    path: 'classificacao',
+    loadChildren: () =>
+      import('./classificacao/classificacao.module').then(
+        (m) => m.ClassificacaoPageModule
+      ),
+  },
+
+
 ];
 
 @NgModule({

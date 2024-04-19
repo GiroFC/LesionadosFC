@@ -4,10 +4,10 @@ import { IJogador, createIJogador } from 'src/models/jogador.model';
 
 
 @Injectable({ providedIn: 'root' })
-export class jogadoreservice {
+export class Jogador {
   private jogadores: IJogador[] = [
-    { id: '1', nome: 'João', estrelas: 5, presente: true },
-    { id: '2', nome: 'Maria', estrelas: 2, presente: false },
+    { id: 1, nome: 'João', estrelas: 5, presente: true },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
   ];
   constructor() {}
 
@@ -15,7 +15,14 @@ export class jogadoreservice {
     return this.jogadores;
   }
 
-  public get(id: string): IJogador {
+  public getByName(nome: string): IJogador {
+    const resultado = this.jogadores.find((obj) => {
+      return obj.nome === nome;
+    });
+    return resultado ? { ...resultado } : createIJogador();
+  }
+
+  public getById(id: number): IJogador {
     const resultado = this.jogadores.find((obj) => {
       return obj.id === id;
     });
@@ -23,14 +30,14 @@ export class jogadoreservice {
   }
 
   public add(novoJogador: IJogador): IJogador {
-    let uid: string = Date.now().toString(16);
+    let uid: number = Date.now();
     novoJogador.id = uid;
     console.log('Salvar --> novoJogador', novoJogador);
     this.jogadores.push(novoJogador);
     return this.jogadores[this.jogadores.length - 1];
   }
 
-  public getIndex(id: string): number {
+  public getIndex(id: number): number {
     const index = this.jogadores.findIndex((obj) => {
       return obj.id === id;
     });
@@ -47,7 +54,7 @@ export class jogadoreservice {
     }
   }
 
-  public delete(id: string): number {
+  public delete(id: number): number {
     const index = this.getIndex(id);
     if (index >= 0) {
       this.jogadores.splice(index, 1);

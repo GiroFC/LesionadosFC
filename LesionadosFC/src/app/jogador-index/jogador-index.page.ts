@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { jogadoreservice } from '../services/jogador.service';
+import { Jogador } from '../services/jogador.service';
 import { IJogador } from 'src/models/jogador.model';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ export class JogadorIndexPage {
 
   constructor(
     private modalCtrl: ModalController,
-    private jogadorServ: jogadoreservice,
+    private jogadorServ: Jogador,
     private router: Router
   ) {}
 
@@ -29,7 +29,7 @@ export class JogadorIndexPage {
     console.log(this.jogadores);
   }
 
-  public deletar(id: string) {
+  public deletar(id: number) {
     this.jogadorServ.delete(id);
     this.listarJogadores();
   }
