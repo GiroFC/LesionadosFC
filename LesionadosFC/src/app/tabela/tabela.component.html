@@ -1,17 +1,22 @@
 <ion-grid>
   <ion-row>
     <ion-col>Nome</ion-col>
-    <ion-col>Estrelas</ion-col>
-    <ion-col>Presente</ion-col>
+    <ion-col class="text-center">Estrelas</ion-col>
+    <ion-col class="text-center">Presente</ion-col>
     <ion-col></ion-col>
   </ion-row>
   
   <ion-row *ngFor="let jogador of dados" >
     <ion-col>{{ jogador.nome }}</ion-col>
-    <ion-col>{{ jogador.estrelas }}</ion-col>
-    <ion-col>{{ jogador.presente }}</ion-col>
-    <ion-col><ion-button shape="round" color="secondary" [routerLink]="['/edit-jogador', jogador.id]  ">
-      <ion-icon slot="icon-only" name="create"></ion-icon>
-    </ion-button></ion-col>
-  </ion-row>
+    <ion-col class="text-center">{{ jogador.estrelas }}</ion-col>
+    <ion-col class="text-center">    
+      <ion-checkbox [(ngModel)]="jogador.presente">
+    </ion-checkbox>
+  </ion-col>
+    <ion-col class="text-center">
+      <ion-button size="small" shape="round" color="secondary"  [routerLink]="['/edit-jogador', jogador.id]  ">
+        <ion-icon slot="icon-only" name="create" md="settings-sharp"></ion-icon>
+      </ion-button>
+    </ion-col>
+    </ion-row>
 </ion-grid>

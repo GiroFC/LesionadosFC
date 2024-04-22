@@ -6,7 +6,7 @@
   <ion-content [fullscreen]="true">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Jogadores</ion-card-title>
+        <ion-card-title class="text-center">Jogadores</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
@@ -14,13 +14,19 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-button color="secondary" [routerLink]="'/times'">Gerar Times</ion-button>
-  <ion-button shape="round" color="secondary" [routerLink]="'/novo-jogador'">
-    <ion-icon slot="icon-only" name="add"></ion-icon>
-  </ion-button>
+
 
   </ion-content>
 
-  
+  <ion-row class="botoes-row">
+    <ion-col size="9">
+      <ion-button expand="full" shape="round" color="secondary" [routerLink]="'/times'">Gerar Times</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="full" shape="round" color="secondary" [routerLink]="'/novo-jogador'">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
 
 </body>
