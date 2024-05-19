@@ -1,0 +1,40 @@
+ion-content{
+    --background : linear-gradient(to bottom right, blue, red)
+}
+
+ion-toolbar{
+    padding: 0!important
+}
+
+ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.text-center{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+}
+
+
+
+.cardClassificacao {
+    padding: 1em;
+}
+
+.cardsButtons {
+    padding: 1em;
+    margin-top: 2em;
+}
+
+.nomeDoTime{
+    font-size: 1.25em;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    margin-top: 10px;
+}

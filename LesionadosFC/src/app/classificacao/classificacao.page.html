@@ -1,13 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Classificacao</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header [translucent]="true"></ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Classificacao</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen="true">
+
+  <ion-card class="cardClassificacao">
+    <ion-card-header>
+      <ion-card-title class="text-center">Classificação</ion-card-title>
+      <ion-row>
+        <ion-col>Nome</ion-col>
+        <ion-col>V</ion-col>
+        <ion-col>E</ion-col>
+        <ion-col>D</ion-col>
+        <ion-col>P</ion-col>
+      </ion-row>
+
+      <ion-row *ngFor="let timesInOrder of timesInOrder">
+        <ion-col>Time {{ timesInOrder.id }}</ion-col>
+        <ion-col>{{ timesInOrder.vitorias }}</ion-col>
+        <ion-col>{{ timesInOrder.empates }}</ion-col>
+        <ion-col>{{ timesInOrder.derrotas }}</ion-col>
+        <ion-col>{{ timesInOrder.pontos }}</ion-col>
+      </ion-row>
+    
+    </ion-card-header>
+  </ion-card>
+    
+  <ion-card *ngFor="let time of times" class="cardsButtons">
+    <ion-row>
+      <ion-col>
+        <ion-text class="nomeDoTime">Time {{ time.id }}</ion-text>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button shape="round">V</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button shape="round">E</ion-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button shape="round">D</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  
 </ion-content>

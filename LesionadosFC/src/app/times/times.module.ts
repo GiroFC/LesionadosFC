@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { TimesPageRoutingModule } from './times-routing.module';
 
 import { TimesPage } from './times.page';
+import { ListaTimesComponent } from 'src/listaTimes/listaTimes.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { TimesPage } from './times.page';
     IonicModule,
     TimesPageRoutingModule
   ],
-  declarations: [TimesPage]
+  declarations: [TimesPage, ListaTimesComponent]
 })
 export class TimesPageModule {}
