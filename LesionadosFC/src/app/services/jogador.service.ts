@@ -8,6 +8,24 @@ export class Jogador {
   private jogadores: IJogador[] = [
     { id: 1, nome: 'João', estrelas: 5, presente: true },
     { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
+    { id: 2, nome: 'Maria', estrelas: 2, presente: false },
   ];
   constructor() {}
 

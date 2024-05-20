@@ -12,11 +12,23 @@ ion-toolbar{
     bottom: 0;
 }
 
+.align-items{
+    align-items: center;
+}
+
 .text-center{
     display: flex;
     justify-content: center;
 }
 
+.align-center{
+    align-content: center;
+}
+
 .playerStar{
     width: 20%;
+}
+
+#cardStars{
+    box-shadow: none;
 }

@@ -17,4 +17,9 @@ import { NovoJogadorPage } from './novo-jogador.page';
   ],
   declarations: [NovoJogadorPage]
 })
-export class NovoJogadorPageModule {}
+export class NovoJogadorPageModule {
+
+  constructor() {}
+
+}
+

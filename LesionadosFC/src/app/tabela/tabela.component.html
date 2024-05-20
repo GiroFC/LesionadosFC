@@ -1,21 +1,21 @@
 <ion-grid>
-  <ion-row>
-    <ion-col>Nome</ion-col>
-    <ion-col class="text-center">Estrelas</ion-col>
-    <ion-col class="text-center">Presente</ion-col>
-    <ion-col></ion-col>
-  </ion-row>
   
   <ion-row *ngFor="let jogador of dados" >
-    <ion-col>{{ jogador.nome }}</ion-col>
-    <ion-col class="text-center">{{ jogador.estrelas }}</ion-col>
-    <ion-col class="text-center">    
-      <ion-checkbox [(ngModel)]="jogador.presente">
-    </ion-checkbox>
+    <ion-col class="align-content">{{ jogador.nome }}</ion-col>
+    <ion-col class="text-center align-items">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <ion-icon 
+            [name]="i < jogador.estrelas ? 'star' : 'star-outline'" 
+            class="playerStar"  size="small">
+          </ion-icon>
+        </ng-container>
+    </ion-col>
+    <ion-col class="text-center align-items"> 
+        <ion-checkbox [(ngModel)]="jogador.presente"></ion-checkbox>
   </ion-col>
-    <ion-col class="text-center">
-      <ion-button size="small" shape="round" color="secondary"  [routerLink]="['/edit-jogador', jogador.id]  ">
-        <ion-icon slot="icon-only" name="create" md="settings-sharp"></ion-icon>
+    <ion-col class="text-center align-items">
+      <ion-button size="small" expand="block" color="dark"  [routerLink]="['/edit-jogador', jogador.id]  ">
+        <ion-icon slot="icon-only" name="color-wand-outline" md="settings-sharp"></ion-icon>
       </ion-button>
     </ion-col>
     </ion-row>

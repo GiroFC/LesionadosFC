@@ -17,4 +17,7 @@ ion-toolbar{
     justify-content: center;
 }
 
-  
+  #card-Jogadores{
+    max-height: 85%;
+    overflow-y: scroll;
+  }
