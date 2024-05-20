@@ -41,6 +41,5 @@ export class JogadorIndexPage {
       ? 'success'
       : 'warning';
   }
-
   
 }

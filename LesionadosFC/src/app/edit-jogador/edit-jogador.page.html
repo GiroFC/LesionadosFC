@@ -9,38 +9,36 @@
     </ion-card-header>
     
     <ion-item>
-      <ion-input label="Nome" placeholder="Player Name"></ion-input>
+      <ion-input [(ngModel)]="inputNome" id="nomeCreate" label="Nome" label-placement="floating" placeholder=""></ion-input>
     </ion-item>
     
 
 
 
     <ion-row class="">
-      <ion-col size="3">
-        <ion-button expand="full" shape="round" color="light">
-          <ion-icon slot="icon-only" color="secondary" name="remove"></ion-icon>
+      <ion-col size="3" class="text-center align-items">
+        <ion-button color="light" (click)="decrementStars()" [disabled]="descreaseDisabled">
+          <ion-icon slot="icon-only" name="remove"></ion-icon>
         </ion-button>
       </ion-col>
 
       <ion-col size="6">
-        <ion-card class="estrelas">
-          <ion-icon name="star-outline" class="playerStar"></ion-icon>
-          <ion-icon name="star-outline" class="playerStar"></ion-icon>
-          <ion-icon name="star-outline" class="playerStar"></ion-icon>
-          <ion-icon name="star-outline" class="playerStar"></ion-icon>
-          <ion-icon name="star-outline" class="playerStar"></ion-icon>
+        <ion-card id="cardStars">
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+            <ion-icon 
+              [name]="i < estrelas ? 'star' : 'star-outline'" 
+              class="playerStar"  size="large">
+            </ion-icon>
+          </ng-container>
         </ion-card>
-
       </ion-col>
 
-      <ion-col size="3">
-        <ion-button expand="full" shape="round" color="light">
-          <ion-icon color="secondary" slot="icon-only" name="add"></ion-icon>
+      <ion-col size="3" class="text-center align-items">
+        <ion-button color="light" (click)="incrementStars()" [disabled]="increaseDisabled">
+          <ion-icon slot="icon-only" name="add"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
-
-
     
 
 
@@ -50,11 +48,13 @@
 
 <ion-row class="botoes-row">
   <ion-col size="3">
-    <ion-button expand="full" shape="round" color="light" [routerLink]="'/jogador-index'">
-      <ion-icon slot="icon-only" color="secondary" name="arrow-back"></ion-icon>
+    <ion-button expand="block" color="light" [routerLink]="'/jogador-index'">
+      <ion-icon slot="icon-only" color="" name="arrow-back"></ion-icon>
     </ion-button>
   </ion-col>
   <ion-col size="9">
-    <ion-button expand="full" shape="round" color="secondary" [routerLink]="'/jogador-index'">Salvar</ion-button>
+    <ion-button expand="block" color="dark" (click)="editJogador()">
+      Salvar
+    </ion-button>
   </ion-col>
 </ion-row>
