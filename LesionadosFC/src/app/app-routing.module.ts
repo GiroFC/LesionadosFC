@@ -1,8 +1,43 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { TabsPage } from './tabs/tabs.page';
 
 const routes: Routes = [
   { path: '', redirectTo: 'jogador-index', pathMatch: 'full' },
+  {
+    path: '',
+    component: TabsPage,
+    children: [
+      {
+        path: 'jogador-index',
+        loadChildren: () =>
+          import('./jogador-index/jogador-index.module').then(
+            (m) => m.JogadorIndexPageModule
+          ),
+      },
+      {
+        path: 'perfil',
+        loadChildren: () =>
+          import('./perfil/perfil.module').then(
+            (m) => m.PerfilPageModule
+          ),
+      },
+      {
+        path: 'times',
+        loadChildren: () =>
+          import('./times/times.module').then(
+            (m) => m.TimesPageModule
+          ),
+      },
+      {
+        path: 'classificacao',
+        loadChildren: () =>
+          import('./classificacao/classificacao.module').then(
+            (m) => m.ClassificacaoPageModule
+          ),
+      },
+    ]
+  },
   {
     path: 'home',
     loadChildren: () =>
@@ -43,6 +78,16 @@ const routes: Routes = [
         (m) => m.ClassificacaoPageModule
       ),
   },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+
+
 
 
 ];
