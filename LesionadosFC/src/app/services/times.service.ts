@@ -12,16 +12,45 @@ export class Times {
     return this.times;
   }
 
+  getTimesOrdenadosPorPontos(): ITime[] {
+    const timesOrdenados = this.times.slice();
+
+    timesOrdenados.sort((a, b) => b.pontos - a.pontos);
+
+    return timesOrdenados;
+  }
+
   public add(novoTime: ITime): ITime {
     // let uid: number = Date.now();
     // novoTime.id = uid;
-    console.log('Salvar --> novoTime', novoTime);
     this.times.push(novoTime);
     return this.times[this.times.length - 1];
   }
 
   public limpar(){
     this.times.length = 0;
+  }
+
+  public addWin(id: number){
+    const time = this.times.find(time => time.id === id)
+    time.vitorias+=1;
+    time.pontos+=3;
+    return time
+  }
+
+
+  public addDefeat(id: number){
+    const time = this.times.find(time => time.id === id)
+    time.derrotas+=1;
+    return time;
+  }
+
+
+  public addTie(id: number){
+    const time = this.times.find(time => time.id === id)
+    time.empates+=1;
+    time.pontos+=1;
+    return time
   }
 
   private embaralharArray(array: any[]): any[] {
@@ -67,17 +96,4 @@ export class Times {
 
     return times;
   }
-
-  public getTeamsByPoints(): ITime[] {
-    return this.times.sort((a, b) => b.pontos - a.pontos);
-  }
-
-  
-
-  /*public getById(id: number): ITime {
-    const resultado = this.times.find((obj) => {
-      return obj.id === id;
-    });
-    return resultado ? { ...resultado } : createITime();
-    }*/
 }

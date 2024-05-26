@@ -3,7 +3,6 @@
 <ion-content fullscreen="true">
 
   <ion-card class="cardClassificacao">
-    <ion-card-header>
       <ion-card-title class="text-center">Classificação</ion-card-title>
       <ion-row>
         <ion-col>Nome</ion-col>
@@ -21,7 +20,6 @@
         <ion-col>{{ timesInOrder.pontos }}</ion-col>
       </ion-row>
     
-    </ion-card-header>
   </ion-card>
     
   <ion-card *ngFor="let time of times" class="cardsButtons">
@@ -29,15 +27,18 @@
       <ion-col>
         <ion-text class="nomeDoTime">Time {{ time.id }}</ion-text>
       </ion-col>
-      <ion-col size="3">
-        <ion-button shape="round">V</ion-button>
+      <ion-col size="9">
+        <ion-col>
+          <ion-button class="btnResult" color="dark" (click)="addWin(time.id)">V</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="btnResult" color="dark" (click)="addTie(time.id)">E</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="btnResult" color="dark" (click)="addDefeat(time.id)">D</ion-button>
+        </ion-col>
       </ion-col>
-      <ion-col size="3">
-        <ion-button shape="round">E</ion-button>
-      </ion-col>
-      <ion-col size="3">
-        <ion-button shape="round">D</ion-button>
-      </ion-col>
+     
     </ion-row>
   </ion-card>
 

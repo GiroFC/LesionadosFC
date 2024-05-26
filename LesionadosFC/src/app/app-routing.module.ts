@@ -16,13 +16,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'perfil',
-        loadChildren: () =>
-          import('./perfil/perfil.module').then(
-            (m) => m.PerfilPageModule
-          ),
-      },
-      {
         path: 'times',
         loadChildren: () =>
           import('./times/times.module').then(
@@ -81,10 +74,6 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
-  },
-  {
-    path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
 
 
