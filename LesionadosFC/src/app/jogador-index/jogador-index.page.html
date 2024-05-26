@@ -14,13 +14,16 @@
       </ion-card-content>
     </ion-card>
 
+    <div class="text-center">
+      <h6 id="obsIndex">Marque à esquerda os jogadores presentes</h6>
+    </div>
 
 
   </ion-content>
 
   <ion-row class="botoes-row">
     <ion-col size="9">
-      <ion-button expand="block" color="dark" [routerLink]="'/times'">
+      <ion-button expand="block" color="dark" (click)="gerarTimesRandom()">
         Gerar Times
       </ion-button>
     </ion-col>

@@ -5,20 +5,8 @@
 
   <ion-card-content>
     <ion-list>
-      <ion-item class="nomeJogador">
-        <ion-text> {{ time.jogador1.nome }}</ion-text>
-      </ion-item>
-      <ion-item class="nomeJogador">
-        <ion-text> {{ time.jogador2.nome }}</ion-text>
-      </ion-item>
-      <ion-item class="nomeJogador">
-        <ion-text> {{ time.jogador3.nome }}</ion-text>
-      </ion-item>
-      <ion-item class="nomeJogador">
-        <ion-text> {{ time.jogador4.nome }}</ion-text>
-      </ion-item>
-      <ion-item class="nomeJogador">
-        <ion-text> {{ time.jogador5.nome }}</ion-text>
+      <ion-item *ngFor="let jogador of time.jogadores" class="nomeJogador" style="width: 100%;">
+        <ion-text> {{ jogador.nome }}</ion-text>
       </ion-item>
     </ion-list>
   </ion-card-content>

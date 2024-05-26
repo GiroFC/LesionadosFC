@@ -5,3 +5,19 @@ ion-content{
 ion-toolbar{
     padding: 0!important
 }
+
+.botoes-row {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.text-center{
+    display: flex;
+    justify-content: center;
+}
+
+#card-times{
+    max-height: 90%;
+    overflow-y: scroll;
+  }

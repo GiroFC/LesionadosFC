@@ -1,18 +1,28 @@
+<body>
 <ion-header [translucent]="true">
     
 </ion-header>
 
 <ion-content [fullscreen]="true">
+<div id="card-times">
+  <ion-card-header>
+    <ion-card-title class="titulo">Times</ion-card-title>
+  </ion-card-header>
 
-    <ion-card-header>
-      <ion-card-title class="titulo">Times</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <app-lista-times [dados]="times"></app-lista-times>
-    </ion-card-content>
-
-
-
-
+  <ion-card-content>
+    <app-lista-times [dados]="times"></app-lista-times>
+  </ion-card-content>
+</div>
 </ion-content>
+
+    <ion-row class="botoes-row">
+      <ion-col size="12">
+        <ion-button expand="block" color="dark" (click)="limparTimes()">
+          Limpar Times
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+
+</body>

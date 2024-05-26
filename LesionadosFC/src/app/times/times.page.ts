@@ -25,6 +25,10 @@ export class TimesPage implements OnInit {
     console.log(this.times);
   }
 
+  public limparTimes(){
+    this.timesServ.limpar()
+  }
+
   public corPrioridade(prioridade: string) {
     return prioridade === 'alto'
       ? 'danger'

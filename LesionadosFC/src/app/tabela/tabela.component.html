@@ -1,7 +1,7 @@
 <ion-grid>
   
   <ion-row *ngFor="let jogador of dados">
-    <ion-col class="align-content" style="max-width: fit-content;"> 
+    <ion-col class="text-center align-items" style="max-width: fit-content;"> 
       <ion-checkbox [(ngModel)]="jogador.presente"></ion-checkbox>
     </ion-col>
     <ion-col class="align-content">{{ jogador.nome }}</ion-col>
@@ -13,16 +13,14 @@
           </ion-icon>
         </ng-container>
     </ion-col>
+  <ion-col style="display: flex;">
+    <ion-button size="small" expand="block" color="dark" (click)="gotoEdit(jogador.id)">
+      <ion-icon slot="icon-only" name="settings-sharp" md="settings-sharp"></ion-icon>
+    </ion-button>
+    <ion-button size="small" expand="block" color="dark" (click)="deleteJogador(jogador.id)">
+      <ion-icon slot="icon-only" name="trash-bin-sharp"></ion-icon>
+    </ion-button>
+  </ion-col>
 
-    <ion-col class="text-center align-items">
-      <ion-button size="small" expand="block" color="dark" (click)="gotoEdit(jogador.id)">
-        <ion-icon slot="icon-only" name="settings-outline" md="settings-sharp"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col class="text-center align-items">
-      <ion-button size="small" expand="block" color="dark">
-        <ion-icon slot="icon-only" name="trash-bin-sharp"></ion-icon>
-      </ion-button>
-    </ion-col>
     </ion-row>
 </ion-grid>

@@ -34,6 +34,17 @@ export class EditJogadorPage implements OnInit {
     this.estrelas = this.jogador.estrelas
     this.presente = this.jogador.presente
     this.id = this.jogador.id
+
+    if(this.estrelas === 5){
+      this.increaseDisabled = true;
+      this.descreaseDisabled = false;
+    }else if(this.estrelas === 1){
+      this.increaseDisabled = false;
+      this.descreaseDisabled = true;
+    }else{
+      this.increaseDisabled = false;
+      this.descreaseDisabled = false;
+    }
   }
 
 

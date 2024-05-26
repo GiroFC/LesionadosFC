@@ -2,11 +2,7 @@ import { IJogador } from 'src/models/jogador.model';
 
 interface ITime {
     id: number;
-    jogador1: IJogador;
-    jogador2: IJogador;
-    jogador3: IJogador;
-    jogador4: IJogador;
-    jogador5: IJogador;
+    jogadores: IJogador[]
     vitorias: number;
     derrotas: number;
     empates: number;
@@ -15,12 +11,8 @@ interface ITime {
   
   function createITime() {
     return {
-        id: 0,
-      jogador1: null,    
-      jogador2: null,
-      jogador3: null,
-      jogador4: null,
-      jogador5: null,
+      id: 0,
+      jogadores: null,
       vitorias: 0,
       derrotas: 0,
       empates: 0,
