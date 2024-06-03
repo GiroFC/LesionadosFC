@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITime } from 'src/models/time.model';
 import { IJogador } from 'src/models/jogador.model';
-import { Jogador } from './jogador.service';
 
 @Injectable({ providedIn: 'root' })
 export class Times {
@@ -21,8 +20,6 @@ export class Times {
   }
 
   public add(novoTime: ITime): ITime {
-    // let uid: number = Date.now();
-    // novoTime.id = uid;
     this.times.push(novoTime);
     return this.times[this.times.length - 1];
   }

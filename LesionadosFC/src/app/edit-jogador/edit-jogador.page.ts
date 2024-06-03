@@ -1,4 +1,4 @@
-import { createIJogador } from 'src/models/jogador.model';
+import { IJogador, createIJogador } from 'src/models/jogador.model';
 import { Jogador } from './../services/jogador.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +18,7 @@ export class EditJogadorPage implements OnInit {
   increaseDisabled: boolean = false;
   descreaseDisabled: boolean = true;
   inputNome: string = '';
+  public iJogador: IJogador = createIJogador();
 
   constructor(
     private toastController: ToastController,
@@ -27,30 +28,35 @@ export class EditJogadorPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = Number(this.rotaAtiva.snapshot.paramMap.get('id'))
-    this.jogador = this.jogadoreservice.getById(id);
+    const id = this.rotaAtiva.snapshot.paramMap.get('id');
 
-    this.inputNome = this.jogador.nome
-    this.estrelas = this.jogador.estrelas
-    this.presente = this.jogador.presente
-    this.id = this.jogador.id
+    this.jogadoreservice.get(id).subscribe(jogador => {
+      this.iJogador = jogador;
+      console.log("dentro: ", this.iJogador);
 
-    if(this.estrelas === 5){
-      this.increaseDisabled = true;
-      this.descreaseDisabled = false;
-    }else if(this.estrelas === 1){
-      this.increaseDisabled = false;
-      this.descreaseDisabled = true;
-    }else{
-      this.increaseDisabled = false;
-      this.descreaseDisabled = false;
-    }
+      this.inputNome = this.iJogador.nome;
+      this.estrelas = this.iJogador.estrelas;
+      this.presente = this.iJogador.presente;
+      this.id = this.iJogador.id;
+
+      if (this.estrelas === 5) {
+        this.increaseDisabled = true;
+        this.descreaseDisabled = false;
+      } else if (this.estrelas === 1) {
+        this.increaseDisabled = false;
+        this.descreaseDisabled = true;
+      } else {
+        this.increaseDisabled = false;
+        this.descreaseDisabled = false;
+      }
+    });
+
+    console.log("fora: ", this.iJogador);
   }
-
 
   incrementStars() {
     this.descreaseDisabled = false;
-    if(this.estrelas === 5){
+    if (this.estrelas === 5) {
       this.increaseDisabled = true;
       return;
     }
@@ -59,15 +65,16 @@ export class EditJogadorPage implements OnInit {
 
   decrementStars() {
     this.increaseDisabled = false;
-    if(this.estrelas === 0){
+    if (this.estrelas === 0) {
       this.descreaseDisabled = true;
       return;
     }
     this.estrelas -= 1;
   }
 
-  async editJogador(){
-    if(this.inputNome == "" || this.inputNome == undefined || this.inputNome == null){
+  async editJogador() {
+    
+    if (this.inputNome == "" || this.inputNome == undefined || this.inputNome == null) {
       const toast = await this.toastController.create({
         message: 'ATENÇÃO!! PREENCHA TODOS OS CAMPOS!',
         duration: 2500,
@@ -75,11 +82,11 @@ export class EditJogadorPage implements OnInit {
         color: "dark",
       });
       toast.present();
-    }else{
+    } else {
       this.jogador.estrelas = this.estrelas;
       this.jogador.nome = this.inputNome;
 
-      this.jogadoreservice.update(this.jogador)
+      this.jogadoreservice.update(this.jogador);
 
       this.router.navigate(['/jogador-index']);
     }

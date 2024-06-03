@@ -29,7 +29,9 @@ export class JogadorIndexPage {
   }
 
   public listarJogadores() {
-    this.jogadores = this.jogadorServ.getAll();
+    this.jogadorServ.getAll().subscribe((jogadores: IJogador[]) => {
+      this.jogadores = jogadores;
+    });
   }
 
   public deletar(id: number) {

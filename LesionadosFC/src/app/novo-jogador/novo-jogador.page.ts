@@ -53,6 +53,7 @@ export class NovoJogadorPage implements OnInit {
       this.jogador.estrelas = this.estrelas;
       this.jogador.nome = this.inputNome;
       this.jogador.presente = false;
+      this.jogador.id = Date.now();
 
       this.jogadorServ.add(this.jogador)
 

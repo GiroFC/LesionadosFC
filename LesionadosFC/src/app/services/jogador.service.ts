@@ -1,60 +1,63 @@
 import { Injectable } from '@angular/core';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+  doc,
+  setDoc,
+  deleteDoc,
+  docSnapshots,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { find, map } from 'rxjs/operators';
 import { IJogador, createIJogador } from 'src/models/jogador.model';
-
 
 @Injectable({ providedIn: 'root' })
 export class Jogador {
-  private jogadores: IJogador[] = [
-    { id: 1, nome: 'João', estrelas: 5, presente: true },
-    { id: 2, nome: 'Maria', estrelas: 2, presente: true },
-    { id: 3, nome: 'Carlos', estrelas: 1, presente: true },
-    { id: 4, nome: 'Pedro', estrelas: 5, presente: true },
-    { id: 5, nome: 'Breno', estrelas: 4, presente: true },
-    { id: 6, nome: 'Caio', estrelas: 4, presente: true },
-    { id: 7, nome: 'Vinicius', estrelas: 4, presente: true },
-    { id: 8, nome: 'Matheus', estrelas: 4, presente: true },
-    { id: 9, nome: 'Lucas', estrelas: 4, presente: true },
-    { id: 10, nome: 'Danilo', estrelas: 4, presente: true },
-    { id: 11, nome: 'Extra', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-    { id: 12, nome: 'Extra2', estrelas: 4, presente: true },
-];
-  constructor() {}
+  private jogadores: IJogador[] = [];
 
-  public getAll(): IJogador[] {
-    return this.jogadores;
+  constructor(public firestore: Firestore) {}
+
+  public getAll(): Observable<IJogador[]> {
+    const tCollection = collection(this.firestore, 'jogadores');
+    return collectionData(tCollection, { idField: 'id' }).pipe(
+      map((jogadores) => jogadores as IJogador[])
+    );
   }
 
-  public getByName(nome: string): IJogador {
-    const resultado = this.jogadores.find((obj) => {
-      return obj.nome === nome;
+  //create a function to get a player by id, returning a IJogador in firebase
+  public get(id: string): Observable<IJogador> {
+    const tCollection = collection(this.firestore, 'jogadores');
+    const tDoc = doc(tCollection, id);
+    return docSnapshots(tDoc).pipe(
+      map((doc) => {
+        if (doc.exists()) {
+          const jogador = doc.data() as IJogador;
+          return jogador;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
+
+  public async add(novoJogador: IJogador): Promise<IJogador> {
+    const docRef = await addDoc(collection(this.firestore, 'jogadores'), {
+      id: novoJogador.id,
+      nome: novoJogador.nome,
+      estrelas: novoJogador.estrelas,
+      presente: novoJogador.presente,
     });
-    return resultado ? { ...resultado } : createIJogador();
-  }
 
-  public getById(id: number): IJogador {
-    const resultado = this.jogadores.find((obj) => {
-      return obj.id === id;
-    });
-    return resultado ? { ...resultado } : createIJogador();
-  }
-
-  public add(novoJogador: IJogador): IJogador {
-    let uid: number = Date.now();
-    novoJogador.id = uid;
+    console.log('Jogador salvo com o ID:', docRef.id);
     console.log('Salvar --> novoJogador', novoJogador);
+
+    let uid: any = Date.now();
+    uid = uid.toString(16);
+
+    novoJogador.id = uid;
+
     this.jogadores.push(novoJogador);
     return this.jogadores[this.jogadores.length - 1];
   }
@@ -68,6 +71,9 @@ export class Jogador {
 
   public update(jogador: IJogador): IJogador {
     const index = this.getIndex(jogador.id);
+    const document = doc(this.firestore, 'jogador', jogador?.id.toString());
+    const { id, ...data } = jogador;
+    setDoc(document, data);
     if (index >= 0) {
       this.jogadores[index] = jogador;
       return this.jogadores[index];
@@ -78,6 +84,8 @@ export class Jogador {
 
   public delete(id: number): number {
     const index = this.getIndex(id);
+    const document = doc(this.firestore, 'tarefas', id.toString());
+    deleteDoc(document);
     if (index >= 0) {
       this.jogadores.splice(index, 1);
     }
