@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-jogador.page.scss'],
 })
 export class EditJogadorPage implements OnInit {
-  public jogador: any;
+  public jogadorEditado: IJogador = createIJogador();
   estrelas: number = 0;
   presente: boolean = false;
   id: string = '';
@@ -73,7 +73,6 @@ export class EditJogadorPage implements OnInit {
   }
 
   async editJogador() {
-    
     if (this.inputNome == "" || this.inputNome == undefined || this.inputNome == null) {
       const toast = await this.toastController.create({
         message: 'ATENÇÃO!! PREENCHA TODOS OS CAMPOS!',
@@ -83,10 +82,13 @@ export class EditJogadorPage implements OnInit {
       });
       toast.present();
     } else {
-      this.jogador.estrelas = this.estrelas;
-      this.jogador.nome = this.inputNome;
+      this.jogadorEditado.estrelas = this.estrelas;
+      this.jogadorEditado.nome = this.inputNome;
+      this.jogadorEditado.presente = this.presente;
+      this.jogadorEditado.id = this.id;
+      console.log("jogadorEditado: ", this.jogadorEditado);
 
-      this.jogadoreservice.update(this.jogador);
+      this.jogadoreservice.update(this.jogadorEditado.id);
 
       this.router.navigate(['/jogador-index']);
     }

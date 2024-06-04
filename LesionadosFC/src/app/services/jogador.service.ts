@@ -69,17 +69,13 @@ export class Jogador {
     return index;
   }
 
-  public update(jogador: IJogador): IJogador {
-    const index = this.getIndex(jogador.id);
-    const document = doc(this.firestore, 'jogadores', jogador?.id.toString());
-    const { id, ...data } = jogador;
-    setDoc(document, data);
-    if (index >= 0) {
-      this.jogadores[index] = jogador;
-      return this.jogadores[index];
-    } else {
-      return createIJogador();
-    }
+  public update(id: string): void {
+    console.log('Atualizando jogador com o ID:', id);
+    const index = this.getIndex(id);
+    const document = doc(this.firestore, 'jogadores', id);
+    setDoc(document, this.jogadores[index]);
+
+    console.log('Jogador atualizado com o ID:', id);
   }
 
   public delete(id: string): number {
