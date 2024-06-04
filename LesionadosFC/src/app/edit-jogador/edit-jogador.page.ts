@@ -14,7 +14,7 @@ export class EditJogadorPage implements OnInit {
   public jogador: any;
   estrelas: number = 0;
   presente: boolean = false;
-  id: number = 0;
+  id: string = '';
   increaseDisabled: boolean = false;
   descreaseDisabled: boolean = true;
   inputNome: string = '';

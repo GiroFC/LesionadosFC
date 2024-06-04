@@ -62,7 +62,7 @@ export class Jogador {
     return this.jogadores[this.jogadores.length - 1];
   }
 
-  public getIndex(id: number): number {
+  public getIndex(id: string): number {
     const index = this.jogadores.findIndex((obj) => {
       return obj.id === id;
     });
@@ -71,7 +71,7 @@ export class Jogador {
 
   public update(jogador: IJogador): IJogador {
     const index = this.getIndex(jogador.id);
-    const document = doc(this.firestore, 'jogador', jogador?.id.toString());
+    const document = doc(this.firestore, 'jogadores', jogador?.id.toString());
     const { id, ...data } = jogador;
     setDoc(document, data);
     if (index >= 0) {
@@ -82,9 +82,9 @@ export class Jogador {
     }
   }
 
-  public delete(id: number): number {
+  public delete(id: string): number {
     const index = this.getIndex(id);
-    const document = doc(this.firestore, 'tarefas', id.toString());
+    const document = doc(this.firestore, 'jogadores', id);
     deleteDoc(document);
     if (index >= 0) {
       this.jogadores.splice(index, 1);

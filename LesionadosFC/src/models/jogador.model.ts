@@ -1,5 +1,5 @@
 interface IJogador {
-  id: number;
+  id: string;
   nome: string;
   estrelas: number;
   presente: boolean;
@@ -7,7 +7,7 @@ interface IJogador {
 
 function createIJogador() {
   return {
-    id: 0,
+    id: '',
     nome: '',
     estrelas: 0,
     presente: false,

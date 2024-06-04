@@ -19,11 +19,11 @@ export class TabelaComponent {
   ) {}
 
   
-  gotoEdit(id: number){
+  gotoEdit(id: string){
     this.router.navigate(['/edit-jogador', id]);
   }
 
-  deleteJogador(id: number){
+  deleteJogador(id: string){
     this.jogadoreservice.delete(id);
   }
 }

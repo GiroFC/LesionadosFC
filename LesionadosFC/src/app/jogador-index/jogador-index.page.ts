@@ -34,7 +34,7 @@ export class JogadorIndexPage {
     });
   }
 
-  public deletar(id: number) {
+  public deletar(id: string) {
     this.jogadorServ.delete(id);
     this.listarJogadores();
   }
