@@ -28,6 +28,15 @@ export class Times {
     this.times.length = 0;
   }
 
+  public limparPontos(){
+    this.times.forEach(time => {
+      time.pontos = 0;
+      time.derrotas = 0;
+      time.empates = 0;
+      time.vitorias = 0;
+    })
+  }
+
   public addWin(id: number){
     const time = this.times.find(time => time.id === id)
     time.vitorias+=1;

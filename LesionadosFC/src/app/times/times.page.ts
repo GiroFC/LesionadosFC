@@ -26,6 +26,7 @@ export class TimesPage implements OnInit {
   }
 
   public limparTimes(){
+    this.timesServ.limparPontos()
     this.timesServ.limpar()
   }
 
