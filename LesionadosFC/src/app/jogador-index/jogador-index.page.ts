@@ -30,6 +30,10 @@ export class JogadorIndexPage {
 
   public listarJogadores() {
     this.jogadorServ.getAll().subscribe((jogadores: IJogador[]) => {
+      //quero ordenar os jogadores por ordem alfabetica
+      jogadores.sort((a, b) => {
+        return a.nome.localeCompare(b.nome);
+      });
       this.jogadores = jogadores;
     });
   }
