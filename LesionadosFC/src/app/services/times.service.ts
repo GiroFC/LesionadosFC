@@ -58,6 +58,83 @@ export class Times {
     return array;
   }
 
+  public generateTimesBalanceado(jogadores: IJogador[]): ITime[] {
+    this.times.length = 0;
+    const tamanhoTime = 5;
+
+    const jogadoresPresentes = jogadores.filter(jogador => jogador.presente)
+
+    if (jogadoresPresentes.length < tamanhoTime) {
+        throw new Error('Número insuficiente de jogadores presentes para formar um time');
+    }
+
+    // Ordenar jogadores por estrelas (habilidade) em ordem decrescente
+    jogadoresPresentes.sort((a, b) => b.estrelas - a.estrelas);
+
+    // Criar os times
+    const times: ITime[] = [];
+    let id = 1;
+    const numTimes = Math.ceil(jogadoresPresentes.length / tamanhoTime);
+
+    for (let i = 0; i < numTimes; i++) {
+        times.push({
+            id: id++,
+            jogadores: [],
+            vitorias: 0,
+            derrotas: 0,
+            empates: 0,
+            pontos: 0
+        });
+    }
+
+    // Distribuir os jogadores de forma balanceada
+    let index = 0;
+    let reverse = false;
+    while (jogadoresPresentes.length > 0) {
+        if (reverse) {
+            for (let i = numTimes - 1; i >= 0 && jogadoresPresentes.length > 0; i--) {
+                if (times[i].jogadores.length < tamanhoTime) {
+                    times[i].jogadores.push(jogadoresPresentes.shift()!);
+                }
+            }
+        } else {
+            for (let i = 0; i < numTimes && jogadoresPresentes.length > 0; i++) {
+                if (times[i].jogadores.length < tamanhoTime) {
+                    times[i].jogadores.push(jogadoresPresentes.shift()!);
+                }
+            }
+        }
+        reverse = !reverse;
+    }
+
+    // Adicionar os times à lista principal
+    for (const time of times) {
+        this.add(time);
+    }
+
+    this.completeTeams(times, tamanhoTime);
+
+    return times;
+}
+
+public completeTeams(times: ITime[], tamanhoTime: number): ITime[] {
+  times.forEach(time => {
+      const jogadoresFaltantes = tamanhoTime - time.jogadores.length;
+      for (let i = 0; i < jogadoresFaltantes; i++) {
+          const convidado: IJogador = {
+              id: `convidado-${time.id}-${i + 1}`, // Gera um ID único para cada convidado
+              nome: `Convidado ${time.id}-${i + 1}`,
+              estrelas: 0, // Estrelas não fazem diferença
+              presente: true
+          };
+          time.jogadores.push(convidado);
+      }
+  });
+
+  return times;
+}
+
+
   public generateTimesNoFilter(jogadores: IJogador[]): ITime[] {
     this.times.length = 0;
     const tamanhoTime = 5;

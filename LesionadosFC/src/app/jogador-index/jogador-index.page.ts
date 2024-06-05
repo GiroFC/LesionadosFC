@@ -40,9 +40,9 @@ export class JogadorIndexPage {
     this.listarJogadores();
   }
 
-  public async gerarTimesRandom(){
+  public async gerarTimes(){
     try{
-      this.timesServ.generateTimesNoFilter(this.jogadores)
+      this.timesServ.generateTimesBalanceado(this.jogadores)
       this.router.navigate(['/times']);
     }catch(error){
       const toast = await this.toastController.create({
