@@ -50,9 +50,6 @@ export class Jogador {
       presente: novoJogador.presente,
     });
 
-    console.log('Jogador salvo com o ID:', docRef.id);
-    console.log('Salvar --> novoJogador', novoJogador);
-
     let uid: any = Date.now();
     uid = uid.toString(16);
 
@@ -69,22 +66,13 @@ export class Jogador {
     return index;
   }
 
-  public update(id: string): void {
-    console.log('Atualizando jogador com o ID:', id);
-    const index = this.getIndex(id);
+  public update(jogadorToEdit: IJogador, id: string): void {
     const document = doc(this.firestore, 'jogadores', id);
-    setDoc(document, this.jogadores[index]);
-
-    console.log('Jogador atualizado com o ID:', id);
+    setDoc(document, jogadorToEdit);
   }
 
-  public delete(id: string): number {
-    const index = this.getIndex(id);
+  public delete(id: string): void {
     const document = doc(this.firestore, 'jogadores', id);
     deleteDoc(document);
-    if (index >= 0) {
-      this.jogadores.splice(index, 1);
-    }
-    return index;
   }
 }

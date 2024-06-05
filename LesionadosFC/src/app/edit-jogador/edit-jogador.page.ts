@@ -11,14 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-jogador.page.scss'],
 })
 export class EditJogadorPage implements OnInit {
-  public jogadorEditado: IJogador = createIJogador();
+  public jogadorToEdit: IJogador;
+  public jogadorEdited: IJogador = createIJogador();
   estrelas: number = 0;
   presente: boolean = false;
   id: string = '';
   increaseDisabled: boolean = false;
   descreaseDisabled: boolean = true;
   inputNome: string = '';
-  public iJogador: IJogador = createIJogador();
+  public IJogador: IJogador[] = [];
 
   constructor(
     private toastController: ToastController,
@@ -30,14 +31,15 @@ export class EditJogadorPage implements OnInit {
   ngOnInit() {
     const id = this.rotaAtiva.snapshot.paramMap.get('id');
 
-    this.jogadoreservice.get(id).subscribe(jogador => {
-      this.iJogador = jogador;
-      console.log("dentro: ", this.iJogador);
+    this.jogadoreservice.getAll().subscribe((jogadores: IJogador[]) => {
+      this.IJogador = jogadores;
 
-      this.inputNome = this.iJogador.nome;
-      this.estrelas = this.iJogador.estrelas;
-      this.presente = this.iJogador.presente;
-      this.id = this.iJogador.id;
+      this.jogadorToEdit = jogadores.find(jogador => jogador.id === id);
+
+      this.inputNome = this.jogadorToEdit.nome;
+      this.estrelas = this.jogadorToEdit.estrelas;
+      this.presente = this.jogadorToEdit.presente;
+      this.id = this.jogadorToEdit.id;
 
       if (this.estrelas === 5) {
         this.increaseDisabled = true;
@@ -50,8 +52,6 @@ export class EditJogadorPage implements OnInit {
         this.descreaseDisabled = false;
       }
     });
-
-    console.log("fora: ", this.iJogador);
   }
 
   incrementStars() {
@@ -82,13 +82,12 @@ export class EditJogadorPage implements OnInit {
       });
       toast.present();
     } else {
-      this.jogadorEditado.estrelas = this.estrelas;
-      this.jogadorEditado.nome = this.inputNome;
-      this.jogadorEditado.presente = this.presente;
-      this.jogadorEditado.id = this.id;
-      console.log("jogadorEditado: ", this.jogadorEditado);
+      this.jogadorEdited.estrelas = this.estrelas;
+      this.jogadorEdited.nome = this.inputNome;
+      this.jogadorEdited.presente = this.presente;
+      this.jogadorEdited.id = this.id;
 
-      this.jogadoreservice.update(this.jogadorEditado.id);
+      this.jogadoreservice.update(this.jogadorEdited, this.id);
 
       this.router.navigate(['/jogador-index']);
     }

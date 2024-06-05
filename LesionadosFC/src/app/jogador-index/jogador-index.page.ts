@@ -35,6 +35,7 @@ export class JogadorIndexPage {
   }
 
   public deletar(id: string) {
+    console.log(id)
     this.jogadorServ.delete(id);
     this.listarJogadores();
   }
